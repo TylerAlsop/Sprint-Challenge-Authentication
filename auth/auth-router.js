@@ -6,6 +6,9 @@ const Users = require("../users/usersModel")
 
 const router = require('express').Router();
 
+
+////// This handles the route http://localhost:3300/api/auth
+
 router.post('/register', async (req, res) => {
   // implement registration
   try {
