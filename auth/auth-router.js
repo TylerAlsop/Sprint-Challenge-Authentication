@@ -9,7 +9,7 @@ const router = require('express').Router();
 
 ////// This handles the route http://localhost:3300/api/auth
 
-router.post('/register', async (req, res) => {
+router.post('/register', async (req, res, next) => {
   // implement registration
   try {
 		const { username } = req.body
@@ -27,7 +27,7 @@ router.post('/register', async (req, res) => {
 	}
 });
 
-router.post('/login', async (req, res) => {
+router.post('/login', async (req, res, next) => {
   // implement login
 
   const authError = {
@@ -35,7 +35,7 @@ router.post('/login', async (req, res) => {
 	}
 
 	try {
-		const user = await Users.findBy({ username: req.body.username }).first()
+		const user = await Users.findBy({username: req.body.username }).first()
 		if (!user) {
 			return res.status(401).json(authError)
 		}
@@ -54,7 +54,7 @@ router.post('/login', async (req, res) => {
 		res.json({
 			message: `Welcome ${user.username}!`,
 			// token: jwt.sign(tokenPayload, process.env.JWT_SECRET),
-		})
+    })
 	} catch(err) {
 		next(err)
 	}
