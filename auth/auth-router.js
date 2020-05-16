@@ -9,6 +9,11 @@ const router = require('express').Router();
 
 ////// This handles the route http://localhost:3300/api/auth
 
+
+router.get("/", (req, res) => {
+  res.json({message: "Auth home endpoint is up and running."})
+})
+
 router.post('/register', async (req, res, next) => {
   // implement registration
   try {
