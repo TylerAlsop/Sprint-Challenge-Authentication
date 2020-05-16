@@ -35,6 +35,7 @@
   "devDependencies": {
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
+    "jest": "^26.0.1",
     "nodemon": "^2.0.2"
   }
 }
