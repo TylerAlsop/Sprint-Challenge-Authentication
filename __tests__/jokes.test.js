@@ -1,6 +1,9 @@
+require("dotenv").config()
 const supertest = require("supertest")
 const server = require("../api/server")
 const db = require("../database/dbConfig")
+const Users = require("../users/usersModel")
+
 
 afterAll(async () => {
     await db.destroy()
@@ -19,7 +22,7 @@ describe("Jokes integration tests", () => {
 /////////////  Had to comment this out because the tests only work once before needing to be changed /////////////   
 
     // it("POST register endpoint. Valid new user.", async () => {
-    //     const newUserCred = { username: "user1", password: "password1" }
+    //     const newUserCred = { username: "user3", password: "password3" }
     //     const res = await supertest(server)
     //         .post("/api/auth/register")
     //         .send(newUserCred)
@@ -31,10 +34,10 @@ describe("Jokes integration tests", () => {
     // it("POST register endpoint. Existing username.", async () => {
     //     const user = await Users.findBy({ username }).first()
 
-    //     const newUserCred = user
+    //     // const newUserCred = user
     //     const res = await supertest(server)
     //         .post("/api/auth/register")
-    //         .send(newUserCred)
+    //         .send(user)
 
     //     expect(res.statusCode).toBe(409)
 
@@ -43,14 +46,14 @@ describe("Jokes integration tests", () => {
 
 
     it("POST login endpoint", async () => {
-        const userCred = { username: "Tyler1", password: "Password1" }
+        const userCred = { username: "user3", password: "password3" }
         const res = await supertest(server)
             .post("/api/auth/login")
             .send(userCred)
 
             expect(res.statusCode).toBe(200)
 
-            expect(res.body.username).toBe("Tyler1")
+            expect(res.body.username).toBe("user3")
 
     })
 

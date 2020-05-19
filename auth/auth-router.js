@@ -40,7 +40,7 @@ router.post('/login', async (req, res, next) => {
 	}
 
 	try {
-		const user = await Users.findBy({username: req.body.username }).first()
+		const user = await Users.findBy({ username: req.body.username }).first()
 		if (!user) {
 			return res.status(401).json(authError)
 		}
@@ -56,7 +56,8 @@ router.post('/login', async (req, res, next) => {
 
 		res.cookie("token", jwt.sign(tokenPayload, process.env.JWT_SECRET))
 
-		res.status(200).json(user)
+    res.status(200).json(user)
+    
 	} catch(err) {
 		next(err)
 	}
